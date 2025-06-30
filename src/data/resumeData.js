@@ -1,7 +1,7 @@
 export let currentLanguage = "pt";
 export let resumeData = {
   personalInfo: {
-    fullName: "",
+    fullName: "Lele",
     email: "",
     phone: "",
     linkedin: "",
@@ -23,6 +23,8 @@ export const saveToLocalStorage = () => {
   localStorage.setItem("cv-dev-language", currentLanguage);
   localStorage.setItem("cv-dev-resume-data", JSON.stringify(resumeData));
 };
+
+saveToLocalStorage()
 
 export const loadFromLocalStorage = () => {
   const dataLanguage = localStorage.getItem("cv-dev-language");
