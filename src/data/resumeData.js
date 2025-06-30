@@ -1,22 +1,22 @@
-export let currentLanguage = "pt";
+export let currentLanguage = "en";
 export let resumeData = {
   personalInfo: {
     fullName: "Lele",
-    email: "",
-    phone: "",
+    email: "lele@email.com",
+    phone: "4004-3223",
     linkedin: "",
     github: "",
     portfolio: "",
     linktree: "",
     address: "",
   },
-  professionalSummary: "",
+  professionalSummary: 'Web Developer',
   experience: [],
   education: [],
   technicalSkills: [],
   languages: [],
   courses: [],
-  additionalInfo: "",
+  additionalInfo: "CNH A/B",
 };
 
 export const saveToLocalStorage = () => {
