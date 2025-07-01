@@ -1,4 +1,4 @@
-import { resumeData } from "../data/resumeData.js";
+import { resumeData, saveToLocalStorage } from "../data/resumeData.js";
 
 export const populatePersonalInfoAndSummary = () => {
   Object.keys(resumeData.personalInfo).forEach((key) => {
@@ -11,5 +11,26 @@ export const populatePersonalInfoAndSummary = () => {
     element.value = resumeData[id];
   };
   textareaAssignment(`professionalSummary`);
-  textareaAssignment(`additionalInfo`)
+  textareaAssignment(`additionalInfo`);
+};
+
+export const setupPersonalInfoAndSummaryListeners = () => {
+  Object.keys(resumeData.personalInfo).forEach((key) => {
+    const element = document.getElementById(key);
+    element.addEventListener("keyup", () => {
+      resumeData.personalInfo[key] = element.value;
+      saveToLocalStorage();
+    });
+  });
+
+  const textareaListeners = (id) => {
+    const element = document.getElementById(id);
+    element.addEventListener("keyup", () => {
+      resumeData[id] = element.value;
+      saveToLocalStorage();
+    });
+  };
+
+  textareaListeners(`professionalSummary`);
+  textareaListeners(`additionalInfo`);
 };
