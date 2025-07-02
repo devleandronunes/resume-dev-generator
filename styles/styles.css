@@ -298,7 +298,7 @@ body {
 
 .section-header {
   display: flex;
-  justify-content: between;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
@@ -315,8 +315,8 @@ body {
   border-radius: 0.25rem;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .remove-btn:hover {

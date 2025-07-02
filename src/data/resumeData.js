@@ -1,4 +1,4 @@
-export let currentLanguage = "en";
+export let currentLanguage = "pt";
 export let resumeData = {
   personalInfo: {
     fullName: "",
