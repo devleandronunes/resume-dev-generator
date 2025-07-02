@@ -89,3 +89,75 @@ export const updateExperience = (index, field, value) => {
   renderExperience();
   saveToLocalStorage();
 };
+
+export const renderEducation = () => {
+  const container = document.getElementById("education-list");
+  const t = translations[currentLanguage];
+
+  container.innerHTML = resumeData.education
+    .map(
+      (edu, index) => `
+        <div class="section-item">
+            <div class="section-header">
+                <span class="item-title">${t.educationTitle} ${index + 1}</span>
+                <button class="remove-btn" onclick="removeEducation(${index})">🗑️</button>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>${t.degreeLabel}</label>
+                    <input type="text" class="form-input" value="${edu.degree}"
+                           onchange="updateEducation(${index}, 'degree', this.value)">
+                </div>
+                <div class="form-group">
+                    <label>${t.institutionLabel}</label>
+                    <input type="text" class="form-input" value="${
+                      edu.institution
+                    }"
+                           onchange="updateEducation(${index}, 'institution', this.value)">
+                </div>
+                <div class="form-group">
+                    <label>${t.startDateLabel}</label>
+                    <input type="text" class="form-input" value="${
+                      edu.startDate
+                    }" placeholder="MM/YYYY"
+                           onchange="updateEducation(${index}, 'startDate', this.value)">
+                </div>
+                <div class="form-group">
+                    <label>${t.endDateLabel}</label>
+                    <input type="text" class="form-input" value="${edu.endDate || t.present}" placeholder="MM/YYYY"
+                           onchange="updateEducation(${index}, 'endDate', this.value)">
+                </div>
+            </div>
+        </div>
+    `
+    )
+    .join("");
+};
+
+export const addEducation = () => {
+    const education = {
+        degree: '',
+        institution: '',
+        startDate: '',
+        endDate: ''
+    }
+
+    resumeData.education.push(education)
+
+    renderEducation()
+    saveToLocalStorage()
+}
+
+export const removeEducation = (index) => {
+    resumeData.education.splice(index, 1)
+
+    renderEducation()
+    saveToLocalStorage()
+}
+
+export const updateEducation = (index, field, value) => {
+    resumeData[index][field] = value
+
+    renderEducation()
+    saveToLocalStorage()
+}

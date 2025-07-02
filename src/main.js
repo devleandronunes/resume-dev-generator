@@ -12,9 +12,13 @@ import {
 } from "./ui/personalInfoUI.js";
 
 import {
+  addEducation,
   addExperience,
+  removeEducation,
   removeExperience,
+  renderEducation,
   renderExperience,
+  updateEducation,
   updateExperience,
 } from "./ui/dynamicSectionsUI.js";
 
@@ -23,11 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLanguage();
   populatePersonalInfoAndSummary();
   renderExperience();
+  renderEducation();
   setupPersonalInfoAndSummaryListeners();
 
   const addExperienceButton = document.getElementById("addExperienceText");
   if (addExperienceButton) {
     addExperienceButton.addEventListener("click", addExperience);
+  }
+
+  const addEducationButton = document.getElementById("addEducationText");
+  if (addEducationButton) {
+    addEducationButton.addEventListener("click", addEducation);
   }
 
   dataLoaded
@@ -37,3 +47,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.removeExperience = removeExperience;
 window.updateExperience = updateExperience;
+window.removeEducation = removeEducation;
+window.updateEducation = updateEducation;
