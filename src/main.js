@@ -14,12 +14,16 @@ import {
 import {
   addEducation,
   addExperience,
+  addLanguage,
   removeEducation,
   removeExperience,
+  removeLanguage,
   renderEducation,
   renderExperience,
+  renderLanguage,
   updateEducation,
   updateExperience,
+  updateLanguageItem
 } from "./ui/dynamicSectionsUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   populatePersonalInfoAndSummary();
   renderExperience();
   renderEducation();
+  renderLanguage()
   setupPersonalInfoAndSummaryListeners();
 
   const addExperienceButton = document.getElementById("addExperienceText");
@@ -40,6 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
     addEducationButton.addEventListener("click", addEducation);
   }
 
+  const addLanguageButton = document.getElementById("addLanguageText");
+  if (addLanguageButton) {
+    addLanguageButton.addEventListener("click", addLanguage);
+  }
+
   dataLoaded
     ? console.log("Deu certo", currentLanguage, resumeData)
     : console.log("Deu errado");
@@ -49,3 +59,5 @@ window.removeExperience = removeExperience;
 window.updateExperience = updateExperience;
 window.removeEducation = removeEducation;
 window.updateEducation = updateEducation;
+window.removeLanguage = removeLanguage
+window.updateLanguageItem = updateLanguageItem
