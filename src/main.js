@@ -9,26 +9,29 @@ import { updateLanguage } from "./translations/i18n.js";
 import {
   populatePersonalInfoAndSummary,
   setupPersonalInfoAndSummaryListeners,
-} from "./ui/personalInfoUI.js";
+} from "../src/ui/personalInfoUI.js";
 
 import {
   addCourse,
   addEducation,
   addExperience,
   addLanguage,
+  addSkill,
   removeCourse,
   removeEducation,
   removeExperience,
   removeLanguage,
+  removeSkill,
   renderCourse,
   renderEducation,
   renderExperience,
   renderLanguage,
+  renderSkill,
   updateCourse,
   updateEducation,
   updateExperience,
-  updateLanguageItem
-} from "./ui/dynamicSectionsUI.js";
+  updateLanguageItem,
+} from "../src/ui/dynamicSectionsUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const dataLoaded = loadFromLocalStorage();
@@ -36,8 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
   populatePersonalInfoAndSummary();
   renderExperience();
   renderEducation();
-  renderLanguage()
-  renderCourse()
+  renderLanguage();
+  renderCourse();
+  renderSkill();
   setupPersonalInfoAndSummaryListeners();
 
   const addExperienceButton = document.getElementById("addExperienceText");
@@ -60,6 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     addCourseButton.addEventListener("click", addCourse);
   }
 
+  const addSkillButton = document.getElementById("add-skill");
+  if (addSkillButton) {
+    addSkillButton.addEventListener("click", addSkill);
+  }
+
   dataLoaded
     ? console.log("Deu certo", currentLanguage, resumeData)
     : console.log("Deu errado");
@@ -69,7 +78,8 @@ window.removeExperience = removeExperience;
 window.updateExperience = updateExperience;
 window.removeEducation = removeEducation;
 window.updateEducation = updateEducation;
-window.removeLanguage = removeLanguage
-window.updateLanguageItem = updateLanguageItem
-window.removeCourse = removeCourse
-window.updateCourse = updateCourse
+window.removeLanguage = removeLanguage;
+window.updateLanguageItem = updateLanguageItem;
+window.removeCourse = removeCourse;
+window.updateCourse = updateCourse;
+window.removeSkill = removeSkill;

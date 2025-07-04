@@ -164,6 +164,45 @@ export const updateEducation = (index, field, value) => {
   saveToLocalStorage();
 };
 
+
+export const renderSkill = () => {
+  const container = document.getElementById("skills-list");
+
+  container.innerHTML = resumeData.technicalSkills
+    .map(
+      (skill) => `
+        <div class="skill-tag">
+            ${skill}
+            <button class="skill-remove" onclick="removeSkill('${skill}')">✕</button>
+        </div>
+    `
+    )
+    .join("");
+};
+
+export const addSkill = () => {
+  const skillInput = document.getElementById("skillInput");
+  const skills = skillInput.value.toUpperCase().trim()
+
+  !skills || resumeData.technicalSkills.includes(skills)
+    ? console.log("adicionar skill")
+    : resumeData.technicalSkills.push(skills)
+
+  skillInput.value = "";
+
+  renderSkill();
+  saveToLocalStorage();
+};
+
+export const removeSkill = (skillToRemove) => {
+  resumeData.technicalSkills = resumeData.technicalSkills.filter(
+    (skill) => skill !== skillToRemove
+  );
+
+  renderSkill();
+  saveToLocalStorage();
+};
+
 export const renderLanguage = () => {
   const container = document.getElementById("languages-list");
   const t = translations[currentLanguage];
