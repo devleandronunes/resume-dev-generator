@@ -12,15 +12,19 @@ import {
 } from "./ui/personalInfoUI.js";
 
 import {
+  addCourse,
   addEducation,
   addExperience,
   addLanguage,
+  removeCourse,
   removeEducation,
   removeExperience,
   removeLanguage,
+  renderCourse,
   renderEducation,
   renderExperience,
   renderLanguage,
+  updateCourse,
   updateEducation,
   updateExperience,
   updateLanguageItem
@@ -33,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderExperience();
   renderEducation();
   renderLanguage()
+  renderCourse()
   setupPersonalInfoAndSummaryListeners();
 
   const addExperienceButton = document.getElementById("addExperienceText");
@@ -50,6 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
     addLanguageButton.addEventListener("click", addLanguage);
   }
 
+  const addCourseButton = document.getElementById("addCourseText");
+  if (addCourseButton) {
+    addCourseButton.addEventListener("click", addCourse);
+  }
+
   dataLoaded
     ? console.log("Deu certo", currentLanguage, resumeData)
     : console.log("Deu errado");
@@ -61,3 +71,5 @@ window.removeEducation = removeEducation;
 window.updateEducation = updateEducation;
 window.removeLanguage = removeLanguage
 window.updateLanguageItem = updateLanguageItem
+window.removeCourse = removeCourse
+window.updateCourse = updateCourse

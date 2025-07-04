@@ -175,8 +175,9 @@ export const renderLanguage = () => {
     { value: "native", label: t.native },
   ];
 
-  container.innerHTML = resumeData.languages.map(
-    (lang, index) => `
+  container.innerHTML = resumeData.languages
+    .map(
+      (lang, index) => `
         <div class="section-item">
             <div class="section-header">
                 <span class="item-title">${t.languagesTitle} ${index + 1}</span>
@@ -208,31 +209,98 @@ export const renderLanguage = () => {
             </div>
         </div>
     `
-  ).join('')
+    )
+    .join("");
 };
 
 export const addLanguage = () => {
-    const languages = {
-        language: '',
-        proficiency: 'intermediate'
-    }
+  const languages = {
+    language: "",
+    proficiency: "intermediate",
+  };
 
-    resumeData.languages.push(languages)
+  resumeData.languages.push(languages);
 
-    renderLanguage()
-    saveToLocalStorage()
-}
+  renderLanguage();
+  saveToLocalStorage();
+};
 
 export const removeLanguage = (index) => {
-    resumeData.languages.splice(index, 1)
+  resumeData.languages.splice(index, 1);
 
-    renderLanguage()
-    saveToLocalStorage()
-}
+  renderLanguage();
+  saveToLocalStorage();
+};
 
 export const updateLanguageItem = (index, field, value) => {
-    resumeData.languages[index][field] = value
+  resumeData.languages[index][field] = value;
 
-    renderLanguage()
-    saveToLocalStorage()
-}
+  renderLanguage();
+  saveToLocalStorage();
+};
+
+export const renderCourse = () => {
+  const container = document.getElementById("courses-list");
+  const t = translations[currentLanguage];
+
+  container.innerHTML = resumeData.courses
+    .map(
+      (course, index) => `
+        <div class="section-item">
+            <div class="section-header">
+                <span class="item-title">${t.coursesTitle} ${index + 1}</span>
+                <button class="remove-btn" onclick="removeCourse(${index})">🗑️</button>
+            </div>
+            <div class="form-group">
+                <label>${t.courseNameLabel}</label>
+                <input type="text" class="form-input" value="${course.name}"
+                       onchange="updateCourse(${index}, 'name', this.value)">
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>${t.institutionLabel}</label>
+                    <input type="text" class="form-input" value="${
+                      course.institution
+                    }"
+                           onchange="updateCourse(${index}, 'institution', this.value)">
+                </div>
+                <div class="form-group">
+                    <label>${t.dateLabel}</label>
+                    <input type="text" class="form-input" value="${
+                      course.date
+                    }" placeholder="MM/YYYY"
+                           onchange="updateCourse(${index}, 'date', this.value)">
+                </div>
+            </div>
+        </div>
+    `
+    )
+    .join("");
+};
+
+export const addCourse = () => {
+  const courses = {
+    name: "",
+    institution: "",
+    date: "",
+  };
+
+  resumeData.courses.push(courses);
+
+  renderCourse();
+  saveToLocalStorage();
+};
+
+export const removeCourse = (index) => {
+  resumeData.courses.splice(index, 1);
+
+  renderCourse();
+  saveToLocalStorage();
+};
+
+export const updateCourse = (index, field, value) => {
+  resumeData.courses[index][field] = value;
+
+  renderCourse();
+  saveToLocalStorage();
+};
