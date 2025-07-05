@@ -32,6 +32,7 @@ import {
   updateExperience,
   updateLanguageItem,
 } from "../src/ui/dynamicSectionsUI.js";
+import { updatePreview } from "./ui/resumePreviewUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const dataLoaded = loadFromLocalStorage();
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCourse();
   renderSkill();
   setupPersonalInfoAndSummaryListeners();
+  updatePreview()
 
   const addExperienceButton = document.getElementById("addExperienceText");
   if (addExperienceButton) {
