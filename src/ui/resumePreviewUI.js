@@ -18,10 +18,21 @@ export const updatePreview = async () => {
         `;
   };
 
-  const renderItem = (item, label) => {
+  const renderInfoItem = (item, label) => {
     if (!item) return "";
 
     return `<div>${label}: ${item}</div>`;
+  };
+
+  const renderTextareaItem = (item, title) => {
+    if(!item) return ''
+
+    return `
+      <div class="resume-section">
+                <h2 class="resume-section-title">${title}</h2>
+                <p>${item}</p>
+            </div>
+    `;
   };
 
   container.innerHTML = `<div class="resume-name">${
@@ -29,12 +40,14 @@ export const updatePreview = async () => {
   }</div>
 
         <div class="resume-contact">
-            ${renderItem(resumeData.personalInfo.email, t.emailLabel)}
-            ${renderItem(resumeData.personalInfo.phone, t.phoneLabel)}
+            ${renderInfoItem(resumeData.personalInfo.email, t.emailLabel)}
+            ${renderInfoItem(resumeData.personalInfo.phone, t.phoneLabel)}
             ${renderLink(resumeData.personalInfo.linkedin, t.linkedinLabel)}
             ${renderLink(resumeData.personalInfo.github, t.githubLabel)}
             ${renderLink(resumeData.personalInfo.portfolio, t.portfolioLabel)}
             ${renderLink(resumeData.personalInfo.linktree, t.linktreeLabel)}
-            ${renderItem(resumeData.personalInfo.address, t.addressLabel)}
-        </div>`;
+            ${renderInfoItem(resumeData.personalInfo.address, t.addressLabel)}
+        </div>
+        ${renderTextareaItem(resumeData.professionalSummary, t.summaryTitle)}
+        `;
 };
