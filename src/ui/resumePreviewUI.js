@@ -92,6 +92,19 @@ export const updatePreview = async () => {
     `;
   }
 
+  const renderSkillItem = (item, title) => {
+    if (item.length == 0) return ''
+
+    return `
+      <div class="resume-section">
+                <h2 class="resume-section-title">${title}</h2>
+                <div class="resume-skills">${item.join(
+                  " - "
+                )}</div>
+            </div>
+    `;
+  }
+
   container.innerHTML = `<div class="resume-name">${
     resumeData.personalInfo.fullName || t.yourName
   }</div>
@@ -108,5 +121,6 @@ export const updatePreview = async () => {
         ${renderTextareaItem(resumeData.professionalSummary, t.summaryTitle)}
         ${renderExperienceItem(resumeData.experience, t.experienceTitle)}
         ${renderEducationItem(resumeData.education, t.educationTitle)}
+        ${renderSkillItem(resumeData.technicalSkills, t.skillsTitle)}
         `;
 };
