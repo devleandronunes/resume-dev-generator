@@ -105,6 +105,30 @@ export const updatePreview = async () => {
     `;
   }
 
+  const renderLanguageItem = (item, title) => {
+    if (item.length == 0) return ''
+
+    return `
+      <div class="resume-section">
+                <h2 class="resume-section-title">${title}</h2>
+                ${item
+                  .map(
+                    (lang) => `
+                    <div class="resume-language-item">
+                        <span class="resume-language-name">${
+                          lang.language
+                        }</span>
+                        <span class="resume-language-level">${
+                          lang.proficiency
+                        }</span>
+                    </div>
+                `
+                  )
+                  .join("")}
+            </div>
+    `;
+  }
+
   container.innerHTML = `<div class="resume-name">${
     resumeData.personalInfo.fullName || t.yourName
   }</div>
@@ -122,5 +146,6 @@ export const updatePreview = async () => {
         ${renderExperienceItem(resumeData.experience, t.experienceTitle)}
         ${renderEducationItem(resumeData.education, t.educationTitle)}
         ${renderSkillItem(resumeData.technicalSkills, t.skillsTitle)}
+        ${renderLanguageItem(resumeData.languages, t.languagesTitle)}
         `;
 };
