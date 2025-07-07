@@ -207,11 +207,11 @@ export const renderLanguage = () => {
   const container = document.getElementById("languages-list");
   const t = translations[currentLanguage];
   const proficiencyOptions = [
-    { value: t.beginner, label: t.beginner },
-    { value: t.intermediate, label: t.intermediate },
-    { value: t.advanced, label: t.advanced },
-    { value: t.fluent, label: t.fluent },
-    { value: t.native, label: t.native },
+    { value: `beginner`, label: t.beginner },
+    { value: `intermediate`, label: t.intermediate },
+    { value: `advanced`, label: t.advanced },
+    { value: `fluent`, label: t.fluent },
+    { value: `native`, label: t.native },
   ];
 
   container.innerHTML = resumeData.languages

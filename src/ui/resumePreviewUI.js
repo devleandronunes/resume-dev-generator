@@ -108,6 +108,23 @@ export const updatePreview = async () => {
   const renderLanguageItem = (item, title) => {
     if (item.length == 0) return ''
 
+    const translateProficiency = (proficiency) => {
+
+      if (currentLanguage === "pt") {
+        const proficiencyMap = {
+          beginner: t.beginner,
+          intermediate: t.intermediate,
+          advanced: t.advanced,
+          fluent: t.fluent,
+          native: t.native,
+        };
+
+        return proficiencyMap[proficiency] || proficiency;
+      }
+
+      return proficiency.charAt(0).toUpperCase() + proficiency.slice(1);
+    };
+
     return `
       <div class="resume-section">
                 <h2 class="resume-section-title">${title}</h2>
@@ -119,7 +136,7 @@ export const updatePreview = async () => {
                           lang.language
                         }</span>
                         <span class="resume-language-level">${
-                          lang.proficiency
+                          translateProficiency(lang.proficiency)
                         }</span>
                     </div>
                 `
