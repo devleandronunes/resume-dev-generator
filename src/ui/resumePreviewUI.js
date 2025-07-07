@@ -25,12 +25,42 @@ export const updatePreview = async () => {
   };
 
   const renderTextareaItem = (item, title) => {
-    if(!item) return ''
+    if (!item) return "";
 
     return `
       <div class="resume-section">
                 <h2 class="resume-section-title">${title}</h2>
                 <p>${item}</p>
+            </div>
+    `;
+  };
+
+  const renderExperienceItem = (item, title) => {
+    if (item.length == 0) return "";
+
+    if (item) return `
+      <div class="resume-section">
+                <h2 class="resume-section-title">${title}</h2>
+                ${item
+                  .map(
+                    (exp) => `
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <div class="resume-item-title">${exp.position}</div>
+                            <div class="resume-item-date">${exp.startDate} - ${
+                      exp.endDate || t.present
+                    }</div>
+                        </div>
+                        <div class="resume-item-company">${exp.company}</div>
+                        ${
+                          exp.description
+                            ? `<div class="resume-item-description">${exp.description}</div>`
+                            : ""
+                        }
+                    </div>
+                `
+                  )
+                  .join("")}
             </div>
     `;
   };
@@ -49,5 +79,6 @@ export const updatePreview = async () => {
             ${renderInfoItem(resumeData.personalInfo.address, t.addressLabel)}
         </div>
         ${renderTextareaItem(resumeData.professionalSummary, t.summaryTitle)}
+        ${renderExperienceItem(resumeData.experience, t.experienceTitle)}
         `;
 };
