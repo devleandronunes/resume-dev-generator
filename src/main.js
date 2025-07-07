@@ -11,7 +11,9 @@ import {
   setupPersonalInfoAndSummaryListeners,
 } from "../src/ui/personalInfoUI.js";
 
-import { toggleDropdown, closeDropdowns } from "./eventHandlers/dropdowns.js";
+import { closeDropdowns, toggleDropdown } from "./eventHandlers/dropdowns.js";
+
+import { copyLink, shareOnSocialMedia } from "./utils/shareUtils.js";
 
 import {
   addCourse,
@@ -72,23 +74,78 @@ document.addEventListener("DOMContentLoaded", () => {
     addSkillButton.addEventListener("click", addSkill);
   }
 
-  const languageButton = document.getElementById('language-btn')
+  const languageButton = document.getElementById("language-btn");
   if (languageButton) {
-    languageButton.addEventListener('click', (e) => {
-      e.stopPropagation()
-      toggleDropdown('language-dropdown')
-    })
+    languageButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDropdown("language-dropdown");
+    });
   }
 
-  const shareButton = document.getElementById('share-btn')
+  const shareButton = document.getElementById("share-btn");
   if (shareButton) {
-    shareButton.addEventListener('click', (e) => {
-      e.stopPropagation()
-      toggleDropdown('share-dropdown')
-    })
+    shareButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDropdown("share-dropdown");
+    });
   }
 
-  document.addEventListener('click', closeDropdowns)
+  const newSkillInput = document.getElementById("skillPlaceholder");
+  if (newSkillInput) {
+    newSkillInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addSkill();
+      }
+    });
+  }
+
+  const copyLinkElement = document.getElementById("copyLink");
+  if (copyLinkElement) {
+    copyLinkElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      copyLink();
+    });
+  }
+
+  const shareWhatsappElement = document.getElementById("shareWhatsapp");
+  if (shareWhatsappElement) {
+    shareWhatsappElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      shareOnSocialMedia("whatsapp");
+    });
+  }
+
+  const shareLinkedinElement = document.getElementById("shareLinkedin");
+  if (shareLinkedinElement) {
+    shareLinkedinElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      shareOnSocialMedia("linkedin");
+    });
+  }
+
+  const shareFacebookElement = document.getElementById("shareFacebook");
+  if (shareFacebookElement) {
+    shareFacebookElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      shareOnSocialMedia("facebook");
+    });
+  }
+
+  const shareTwitterElement = document.getElementById("shareTwitter");
+  if (shareTwitterElement) {
+    shareTwitterElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      shareOnSocialMedia("twitter");
+    });
+  }
+
+  document.addEventListener("click", closeDropdowns);
 
   updatePreview();
 
