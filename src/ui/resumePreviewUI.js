@@ -179,5 +179,6 @@ export const updatePreview = async () => {
         ${renderSkillItem(resumeData.technicalSkills, t.skillsTitle)}
         ${renderLanguageItem(resumeData.languages, t.languagesTitle)}
         ${renderCourseItem(resumeData.courses, t.coursesTitle)}
+        ${renderTextareaItem(resumeData.additionalInfo, t.additionalInfoTitle)}
         `;
 };
