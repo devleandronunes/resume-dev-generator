@@ -65,6 +65,33 @@ export const updatePreview = async () => {
     `;
   };
 
+  const renderEducationItem = (item, title) => {
+    if (item.length == 0) return ''
+
+    return `
+       <div class="resume-section">
+                <h2 class="resume-section-title">${title}</h2>
+                ${item
+                  .map(
+                    (edu) => `
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <div class="resume-item-title">${edu.degree}</div>
+                            <div class="resume-item-date">${edu.startDate} - ${
+                      edu.endDate || t.present
+                    }</div>
+                        </div>
+                        <div class="resume-item-company">${
+                          edu.institution
+                        }</div>
+                    </div>
+                `
+                  )
+                  .join("")}
+            </div>
+    `;
+  }
+
   container.innerHTML = `<div class="resume-name">${
     resumeData.personalInfo.fullName || t.yourName
   }</div>
@@ -80,5 +107,6 @@ export const updatePreview = async () => {
         </div>
         ${renderTextareaItem(resumeData.professionalSummary, t.summaryTitle)}
         ${renderExperienceItem(resumeData.experience, t.experienceTitle)}
+        ${renderEducationItem(resumeData.education, t.educationTitle)}
         `;
 };
