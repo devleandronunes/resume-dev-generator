@@ -11,6 +11,8 @@ import {
   setupPersonalInfoAndSummaryListeners,
 } from "../src/ui/personalInfoUI.js";
 
+import { toggleDropdown, closeDropdowns } from "./eventHandlers/dropdowns.js";
+
 import {
   addCourse,
   addEducation,
@@ -44,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCourse();
   renderSkill();
   setupPersonalInfoAndSummaryListeners();
-  updatePreview()
 
   const addExperienceButton = document.getElementById("addExperienceText");
   if (addExperienceButton) {
@@ -70,6 +71,26 @@ document.addEventListener("DOMContentLoaded", () => {
   if (addSkillButton) {
     addSkillButton.addEventListener("click", addSkill);
   }
+
+  const languageButton = document.getElementById('language-btn')
+  if (languageButton) {
+    languageButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      toggleDropdown('language-dropdown')
+    })
+  }
+
+  const shareButton = document.getElementById('share-btn')
+  if (shareButton) {
+    shareButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      toggleDropdown('share-dropdown')
+    })
+  }
+
+  document.addEventListener('click', closeDropdowns)
+
+  updatePreview();
 
   dataLoaded
     ? console.log("Deu certo", currentLanguage, resumeData)
