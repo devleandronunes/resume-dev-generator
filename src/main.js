@@ -15,6 +15,8 @@ import { closeDropdowns, toggleDropdown } from "./eventHandlers/dropdowns.js";
 
 import { copyLink, shareOnSocialMedia } from "./utils/shareUtils.js";
 
+import { downloadPDF } from "./utils/pdfGenerator.js";
+
 import {
   addCourse,
   addEducation,
@@ -143,6 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       shareOnSocialMedia("twitter");
     });
+  }
+
+  const downloadPDFButton = document.getElementById("downloadPdf");
+  if (downloadPDFButton) {
+    downloadPDFButton.addEventListener('click', downloadPDF)
   }
 
   document.addEventListener("click", closeDropdowns);
