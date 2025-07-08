@@ -17,6 +17,8 @@ import { copyLink, shareOnSocialMedia } from "./utils/shareUtils.js";
 
 import { downloadPDF } from "./utils/pdfGenerator.js";
 
+import { setLanguage } from "./data/resumeData.js";
+
 import {
   addCourse,
   addEducation,
@@ -151,6 +153,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (downloadPDFButton) {
     downloadPDFButton.addEventListener('click', downloadPDF)
   }
+
+  document.querySelectorAll("#language-dropdown a").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const selectedLang = this.dataset.lang;
+      setLanguage(selectedLang);
+      updateLanguage();
+      updatePreview();
+      closeDropdowns();
+    });
+  });
 
   document.addEventListener("click", closeDropdowns);
 

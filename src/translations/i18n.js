@@ -115,6 +115,10 @@ export const updateLanguage = () => {
   currentLanguage == "en"
     ? (keyLanguage = translations.en)
     : (keyLanguage = translations.pt);
+  const currentLanguageDisplay = document.getElementById("current-language");
+  if (currentLanguageDisplay) {
+    currentLanguageDisplay.textContent = currentLanguage.toUpperCase();
+  }
   Object.keys(keyLanguage).forEach((key) => {
     const element = document.getElementById(key);
     if (element) {

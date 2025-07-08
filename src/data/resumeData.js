@@ -36,3 +36,8 @@ export const loadFromLocalStorage = () => {
     return false;
   }
 };
+
+export function setLanguage(lang) {
+  currentLanguage = lang;
+  saveToLocalStorage(); 
+}
