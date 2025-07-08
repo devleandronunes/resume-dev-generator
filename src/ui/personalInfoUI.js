@@ -1,4 +1,5 @@
 import { resumeData, saveToLocalStorage } from "../data/resumeData.js";
+import { updatePreview } from "./resumePreviewUI.js";
 
 export const populatePersonalInfoAndSummary = () => {
   Object.keys(resumeData.personalInfo).forEach((key) => {
@@ -20,6 +21,7 @@ export const setupPersonalInfoAndSummaryListeners = () => {
     element.addEventListener("keyup", () => {
       resumeData.personalInfo[key] = element.value;
       saveToLocalStorage();
+      updatePreview()
     });
   });
 
@@ -28,6 +30,7 @@ export const setupPersonalInfoAndSummaryListeners = () => {
     element.addEventListener("keyup", () => {
       resumeData[id] = element.value;
       saveToLocalStorage();
+      updatePreview()
     });
   };
 

@@ -4,6 +4,7 @@ import {
   saveToLocalStorage,
 } from "../data/resumeData.js";
 import { translations } from "../translations/i18n.js";
+import { updatePreview } from "./resumePreviewUI.js";
 
 export const renderExperience = () => {
   const container = document.getElementById(`experience-list`);
@@ -74,6 +75,7 @@ export const addExperience = () => {
 
   renderExperience();
   saveToLocalStorage();
+  updatePreview()
 };
 
 export const removeExperience = (index) => {
@@ -81,6 +83,7 @@ export const removeExperience = (index) => {
 
   renderExperience();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const updateExperience = (index, field, value) => {
@@ -88,6 +91,7 @@ export const updateExperience = (index, field, value) => {
 
   renderExperience();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const renderEducation = () => {
@@ -148,6 +152,7 @@ export const addEducation = () => {
 
   renderEducation();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const removeEducation = (index) => {
@@ -155,6 +160,7 @@ export const removeEducation = (index) => {
 
   renderEducation();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const updateEducation = (index, field, value) => {
@@ -162,6 +168,7 @@ export const updateEducation = (index, field, value) => {
 
   renderEducation();
   saveToLocalStorage();
+  updatePreview();
 };
 
 
@@ -192,6 +199,7 @@ export const addSkill = () => {
 
   renderSkill();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const removeSkill = (skillToRemove) => {
@@ -201,6 +209,7 @@ export const removeSkill = (skillToRemove) => {
 
   renderSkill();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const renderLanguage = () => {
@@ -262,6 +271,7 @@ export const addLanguage = () => {
 
   renderLanguage();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const removeLanguage = (index) => {
@@ -269,6 +279,7 @@ export const removeLanguage = (index) => {
 
   renderLanguage();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const updateLanguageItem = (index, field, value) => {
@@ -276,6 +287,7 @@ export const updateLanguageItem = (index, field, value) => {
 
   renderLanguage();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const renderCourse = () => {
@@ -328,6 +340,7 @@ export const addCourse = () => {
 
   renderCourse();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const removeCourse = (index) => {
@@ -335,6 +348,7 @@ export const removeCourse = (index) => {
 
   renderCourse();
   saveToLocalStorage();
+  updatePreview();
 };
 
 export const updateCourse = (index, field, value) => {
@@ -342,4 +356,5 @@ export const updateCourse = (index, field, value) => {
 
   renderCourse();
   saveToLocalStorage();
+  updatePreview();
 };
